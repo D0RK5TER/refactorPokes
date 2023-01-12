@@ -81,6 +81,7 @@ class Pokemon(db.Model,Enum):
         return pokemons
 
     # define get image url method
+    @property
     def get_img_url(self):
         captured = self.captured
         if (captured):
