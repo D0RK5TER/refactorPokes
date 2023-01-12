@@ -27,20 +27,19 @@ class MyEnum(enum.Enum):
 db = SQLAlchemy()
 UNKNOWN_IMG_URL = "/images/unknown.png"
 
-class Pokemon(db.Model,Enum):
+class Pokemon(db.Model):
     __tablename__= "pokemons"
-    UNKNOWN_IMG_URL = "/images/unknown.png"
-    id = db.Column(db.integer, primary_key =True)
-    number = db.Column(db.integer, nullable=False, unique=True)
-    attack = db.Column(db.integer, nullable=False)
-    defense = db.Column(db.integer, nullable=False)
-    image_url = db.Column(db.string, nullable=False)
-    name = db.Column(db.string, nullable=False, unique=True)
+    id = db.Column(db.Integer, primary_key =True)
+    number = db.Column(db.Integer, nullable=False, unique=True)
+    attack = db.Column(db.Integer, nullable=False)
+    defense = db.Column(db.Integer, nullable=False)
+    image_url = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False, unique=True)
     type = db.Column(Enum(MyEnum), nullable=False, )
-    moves = db.Column(db.string, nullable=False)
-    encounter_rate = db.Column(db.decimal(3,2))
-    catch_rate = db.Column(db.decimal(3,2))
-    captured = db.Column(db.boolean)
+    moves = db.Column(db.String, nullable=False)
+    encounter_rate = db.Column(db.DECIMAL(3,2))
+    catch_rate = db.Column(db.DECIMAL(3,2))
+    captured = db.Column(db.Boolean)
     items = db.relationship("Item", back_populates="pokemon")
 
 
@@ -103,10 +102,10 @@ class Pokemon(db.Model,Enum):
 
 class Item(db.Model):
     __tablename__= "items"
-    id = db.Column(db.integer, primary_key =True)
-    happiness = db.Column(db.integer)
-    image_url = db.Column(db.string(255), nullable=False)
-    name = db.Column(db.string(255), nullable=False)
-    price = db.Column(db.string, nullable=False)
+    id = db.Column(db.Integer, primary_key =True)
+    happiness = db.Column(db.Integer)
+    image_url = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    price = db.Column(db.String, nullable=False)
     pokemon_id = db.Column(db.Integer, db.ForeignKey("pokemons.id"), nullable=False)
     pokemon = db.relationship("Pokemon", back_populates="items")

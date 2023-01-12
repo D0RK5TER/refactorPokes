@@ -1,7 +1,17 @@
 
 # import statement for CSRF
 from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask import Flask
+from .config import Configuration
+from .models import db, Pokemon, Item
+from .routes import current
+from flask_migrate import Migrate
 
+
+app = Flask(__name__)
+app.config.from_object(Configuration)
+db.init_app(app)
+Migrate(app, db)
 
 
 # after request code for CSRF token injection
