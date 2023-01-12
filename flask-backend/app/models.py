@@ -81,7 +81,7 @@ class Pokemon(db.Model,Enum):
         return pokemons
 
     # define get image url method
-    def get_img_url(self)
+    def get_img_url(self):
         captured = self.captured
         if (captured):
             return self.image_url
@@ -95,6 +95,7 @@ class Pokemon(db.Model,Enum):
             return rawValue
         else:
             return None
+
     @get_moves.setter
     def set_moves(self, moves):
         self.moves = moves
@@ -108,7 +109,3 @@ class Item(db.Model):
     price = db.Column(db.string, nullable=False)
     pokemon_id = db.Column(db.Integer, db.ForeignKey("pokemons.id"), nullable=False)
     pokemon = db.relationship("Pokemon", back_populates="items")
-
-
-
-
