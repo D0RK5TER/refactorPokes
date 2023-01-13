@@ -35,3 +35,4 @@ def randomItemImage():
   index = math.floor(math.random() * len(images))
   return images[index]
 
+# from app import app
